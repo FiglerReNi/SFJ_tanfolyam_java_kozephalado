@@ -1,0 +1,15 @@
+Adatáramlás: 
+	- Kifelé: A program által az adat megjelenhet console-on, kiírhatjuk log file-ba, megjelenithetjük a usernek egy felületen, menthetjük file-ba, elküldhetjük egy másik szerverre, küldhetünk róla e-mailt.
+	- Befelé: A felhasználótól fogadunk például adatot.
+	- Error: Hibaüzenetek
+  Standard (alapértelmezett) csatornák. A mi esetünkben az IDE consolja a System. paranccsal.
+	- STDIN: standard kimenő csatorna 
+	- STDOUT: standard bejövő csatorna
+	
+Fileba írás és kiolvasás:
+	- FileOutputStream
+	- FileInputStream
+	
+Buffer:
+	- Stream esetén egyesével tudjuk az adatokat írni/olvasni, ami nagyon lassú lesz.
+	- A bufferek meggyorsítják a folyamatot, adnak egy bizonyos területet, és ahelyett hogy apró részletekben áthaladna az adat, van egy kis tartály ahol összegyűlik. Így gyorsul a folyamat. 
