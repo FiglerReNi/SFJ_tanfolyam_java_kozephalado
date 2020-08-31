@@ -1,0 +1,23 @@
+Elmélet:
+	- A régebbi számítógépekben a CPU egy adott egységből állt. Ez egyszerre egy feladatot képes végezni, ha párhuzamosan több feladat fut, akkor épes közöttük nagyon gyorsan váltogatni, így mindegyik halad valamennyire.
+	- Megjelentek később a multi-core gépek, amelyben valahány magos processzor egység van. Itt a magok ténylegesen külön feladatokat végeznek el.
+	- Threadek egy-egy core-on belül hozhatunk létre virtuálisan több szálat, amelyek egymás mellett futnak. Ezek ún. logikai processzorok. Egy programon belül képesek ezek futni. Rendelkeznek egy közös memória terlettel, ahonnan kivehetnek számukra szükséges erőforrást. Az operáció rendszer és a JVM dönti el, hogy fizikálisan melyik processzor egységen fognak ezek futni.
+	- Multitasking: Több program fut egyidőben, és a fizikai core-ok lehetővé teszik, hogy mindegyik más programot futtasson.
+	- Multithreading: Egy programon belül fut több szál.
+	
+Használat:
+	- Új szál létrehozása erőforrás igényes, ezért kis alkalmazásokhoz nem javasolt.
+	- Nagyobb számítási munkáknál van értelme.
+	- A szálak újra felhasználhatóak, ha úgy használjuk a kódban
+	- A szinkronizáció használata lassítja az alkalmazást (ez az amikor a szálaknak be kell várniuk egymást, ha ugyanahhoz a változóhoz kell például hozzáférniük, egyszerre csak egyik dolgozhat rajta)
+	
+Cél: 
+	- Gyorsabban fusson az alkalmazás.
+	
+Létrehozás:
+	- Egy osztály kiterjesztésével extends Thread
+	- Interface implementálása implements Runnable
+	
+Tudnivalók:
+	- Amikor a program elindul a main függvénnyel kapunk egy alap szálat.
+	- Ha elindítok még egy szálat egymás mellett futnak
