@@ -1,7 +1,7 @@
 Elmélet:
 	- A régebbi számítógépekben a CPU egy adott egységből állt. Ez egyszerre egy feladatot képes végezni, ha párhuzamosan több feladat fut, akkor épes közöttük nagyon gyorsan váltogatni, így mindegyik halad valamennyire.
 	- Megjelentek később a multi-core gépek, amelyben valahány magos processzor egység van. Itt a magok ténylegesen külön feladatokat végeznek el.
-	- Threadek egy-egy core-on belül hozhatunk létre virtuálisan több szálat, amelyek egymás mellett futnak. Ezek ún. logikai processzorok. Egy programon belül képesek ezek futni. Rendelkeznek egy közös memória terlettel, ahonnan kivehetnek számukra szükséges erőforrást. Az operáció rendszer és a JVM dönti el, hogy fizikálisan melyik processzor egységen fognak ezek futni.
+	- Threadek: Virtuálisan több szálat hozhatunk létre, amelyek egymás mellett futnak. Ezek ún. logikai processzorok. Egy programon belül képesek ezek futni. Rendelkeznek egy közös memória területtel, ahonnan kivehetnek számukra szükséges erőforrást. Az operáció rendszer és a JVM dönti el, hogy fizikálisan melyik processzor egységen fognak ezek futni.
 	- Multitasking: Több program fut egyidőben, és a fizikai core-ok lehetővé teszik, hogy mindegyik más programot futtasson.
 	- Multithreading: Egy programon belül fut több szál.
 	
@@ -21,3 +21,10 @@ Létrehozás:
 Tudnivalók:
 	- Amikor a program elindul a main függvénnyel kapunk egy alap szálat.
 	- Ha elindítok még egy szálat egymás mellett futnak
+	- Egy magos processzoron is tud futni több szál, ha a hyperthreading technológiával kompatibilis. Viszont folyamatosan váltogatni fogja a processzor, hogy melyiken dolgozik.
+	- Ha több szálunk van mint a processzorok száma, az operációs rendszer és a JVM felelős azért, hogy a lehető legjobb megoldással futtassa őket.
+	- Amikor elindítunk egy alkalmazást, meg tudjuk határozni a heap méretét (JVM-ben tárolt memóriarész). Tartományt is meg lehet adni. Viszont minél nagyobb a heap, annál kevesebb szál lesz képes futni. Fordított arányosság.
+	
+Volatile:
+	- Elindítunk egy szálat, ami pl egy végtelen ciklus a példa kedvéért és a main szálból akarjuk leállítani.
+	- Két szál tud egymásra hatással lenni tehát.
