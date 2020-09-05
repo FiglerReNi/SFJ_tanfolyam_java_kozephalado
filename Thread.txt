@@ -26,5 +26,23 @@ Tudnivalók:
 	- Amikor elindítunk egy alkalmazást, meg tudjuk határozni a heap méretét (JVM-ben tárolt memóriarész). Tartományt is meg lehet adni. Viszont minél nagyobb a heap, annál kevesebb szál lesz képes futni. Fordított arányosság.
 	
 Volatile:
-	- Elindítunk egy szálat, ami pl egy végtelen ciklus a példa kedvéért és a main szálból akarjuk leállítani.
-	- Két szál tud egymásra hatással lenni tehát.
+	- Meggátolja egy változó cachelését. Ez szálaknál lehet fontos, ha egyik szálból akarunk hatással lenni egy másikra egy változó értékének állításával. Viszont ha az a változó cachel, ez nem fog működni. A cache oka, hogy a JVM megvizsgálja az osztályt és azt látja, hogy osztályon belül semmi nem állítja az értékét a változónak. És mivel ez egy szál nem feltételezi, hogy máshonnan állítva lesz ez az érték. Ezért cacheli. 
+
+Join:
+	- szálak bevárása
+
+Atomic:
+	- feladatok összességét logikai egységnek teintjük. Összevonjuk őket egy egységbe. És ha valami megzavarja a folyamatot, akkor az egészet érvénytelenítenünk kell, ha atomic a folyamat. Csak akkor történik meg, ha ténylegesen minden része meg tud történni. Ha valamelyik része nem tud lefutni az atomic kódhalmaznak, akkor az egészet kidobjuk, mintha le se futott volna. (revertálunk - visszaállunk). Tranzakcióknál fontos.
+		pl. macskakaja vásárlás --> több részfeladatból áll
+		Ha azt mondjuk, hogy ez legyen atomic, akkor, ha valamelyik részfeladat nem hajtható végre (pl. nincs macskakaja), akkor az egész értelmetlen és vissza kell csinálni a kezdőpontba mindent.
+	
+Synchronized:
+	- Akkor van rá szükség, ha két szál ugyanazt a változót módosítaná folyamatosan. A szálak egymással párhuzamosan futnak, így előfordulhat, hogy ugyanazt az erőforrást használják egyidőben, ugyanazt a változó értéket módosítják egyszerre, nem várják be egymást.
+	- Az objektumot, vagy az objektumnak egy részét le tudjuk zárni, lockolni pl egy metódusát.
+	- A metódus atomic-á válik, egyben fog lefutni. Ha meghívja az egyik szál teljesen le kell futnia, és csak ha végzett akkor dolgozhat rajta a másik szál. Amíg tart az egyik folyamat lezárjuk a másik elől a metódust.
+	- Lassítja a folyamatot, hiszen előfordulhat, hogy az egyik szál vár a másikra.
+	- A változó automatikusan Volatile lesz.
+	- Amikor synchronized-ot használunk maga az objektum lockolódik, tehát ha van benne két metódus ami synchronized, akkor ha az egyiket használja egy szál, a másikat hiába nem, akkor sem használhatja egy másik szál. Megoldás: ha a metóduson belül a kódot tesszük synchronized-é. Maga a metódus nem lesz synchronized, de a benne található kód igen.
+	
+ExecutorService: 
+	-Ha nem két feladatot szeretnék külön szálakon, és nem én akarom létrehozni a szálakat, hanem csak egy feladatot szeretnék gyorsan elvégezni, rendelhetek hozzá több szálat. A szálaknak az executor adagolja a feladatot.
