@@ -18,6 +18,8 @@ public class Thread1Application {
 		
 		//implements Runnable
 		Thread t1 = new Thread(new TaskerNew());
+		/*TaskerNew tasker = new TaskerNew()
+		 * Thread t1 = new Thread(tasker)*/
 		Thread t2 = new Thread(new TaskerNew());
 		t1.start();
 		t2.start();
