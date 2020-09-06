@@ -27,13 +27,22 @@ public class Thread3Application {
 			}
 		});
 		
-		Thread t2 = new Thread(new Runnable() {
-			public void run() {
-				for (int i = 0; i < 12000; i++) {
-					//Nem engedjük, hogy a szál hozzáférjen közvetlenül a változóhoz
-					addToCount();
-					//count++
-				}
+		//szál létrehozása lambdával is lehetséges
+		/*Runnable run = () -> {
+			for (int i = 0; i < 12000; i++) {
+				//Nem engedjük, hogy a szál hozzáférjen közvetlenül a változóhoz
+				addToCount();
+				//count++
+			}
+		};		
+		Thread t2 = new Thread(run);*/
+		
+		//még egyszerübben lambdával
+		Thread t2 = new Thread(() -> {
+			for (int i = 0; i < 12000; i++) {
+				//Nem engedjük, hogy a szál hozzáférjen közvetlenül a változóhoz
+				addToCount();
+				//count++
 			}
 		});
 		
