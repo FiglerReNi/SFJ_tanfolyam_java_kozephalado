@@ -1,0 +1,30 @@
+Lambda használata:
+	- anonim osztályok (objetum amit létrehozunk, de nincs neve) kódrövidítése
+	- lehetőséget ad a funkcionális programozásra.
+		1. procedurális
+		2. oop: absztract, különböző egységeket tudunk létrehozni, minden dolog egy objektum. Minden objektumnak a legfőbb ősosztálya az object.
+			-> Mindkettő gépi kódra fordul.
+		3. funkcionális programozás: nem arra koncentrál, hogy mi az a dolog, és honnan ered, mint az oop, hanem, hogy mit csinál, mi az amit tudnia kell.
+		Példa: oop-ben egy kutya rám morgott (meg kell mondani mi)
+			   funkcionális-ban valami rám morgott (teljesen mindegy mi, a morgás a lényeg)
+			   
+Felépítése:
+	- képes egy methódust vagy függvényt beletenni egy változóba.
+	- a public+void+név teljesen elhagyható, mivel a név a változó neve lesz, és a lambda el tudja dönteni, hogy van-e visszatérő érték vagy sem (ezért nem kell a void), a hozzáférhetőség pedig az alapján dől el, hogy ki kapja a változót így a public itt értelmetlen.
+	- () kell a beérkező paramétereknek, ha csak egy van elhagyható
+	- {} elhagyható ha csak egy soros a kód törzse
+	- Típus az interface
+	- Csak olyan interface esetén használható, amelyben csak egy metódus/függvény van, ezért ezeet a @FunctionalInterface annotációval látjuk el, így ha valai hozzá írna egy metódust, egyból hibát jelez.
+	Típus példa = ()-> {System.out.prinln("Teszt");}
+	
+Különbség az anonim osztály és a lambda között:
+	- Egyszerűbb a kód lambdaval -> kevesebb karakter
+	- Mindkettő ugyanúgy lefut
+	- Háttér működésben van különbség:
+		máshogy kezelik saját magukat: 
+			Amikor egy anonim objektumot hozok létre, akkor az egy objektum lesz ami létrejön és így is tekint magára, mint az objektum láncolat része.
+			Amikor lambdával hozom létre, akkor is egy objektum jön létre, de ő mint funkcionális kód tekint magára. Ahol az a fontos mit csinál, nem hogy miből származik
+		This -> anonim, kiírja az objektum azonosítóját, vagy ha felülírjuk a toStringet akkor amit szeretnénk. Saját magára 	vonatkoztatja a thist.
+			 -> lambda nem fogja a this-t magára vonatkoztatni, nem tekint magára egy külön objektumként, és main-en belül statikus környezetben hibát is jelez. Csak nem statikus környezetben működik a this. A külső környezetére vonatkoztatja a thist.
+		
+
