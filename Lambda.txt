@@ -17,7 +17,7 @@ Felépítése:
 	- Csak olyan interface esetén használható, amelyben csak egy metódus/függvény van, ezért ezeet a @FunctionalInterface annotációval látjuk el, így ha valai hozzá írna egy metódust, egyból hibát jelez.
 	Típus példa = ()-> {System.out.prinln("Teszt");}
 	
-Különbség az anonim osztály és a lambda között:
+Különbség az anonim osztály (inner class) és a lambda között:
 	- Egyszerűbb a kód lambdaval -> kevesebb karakter
 	- Mindkettő ugyanúgy lefut
 	- Háttér működésben van különbség:
@@ -26,5 +26,6 @@ Különbség az anonim osztály és a lambda között:
 			Amikor lambdával hozom létre, akkor is egy objektum jön létre, de ő mint funkcionális kód tekint magára. Ahol az a fontos mit csinál, nem hogy miből származik
 		This -> anonim, kiírja az objektum azonosítóját, vagy ha felülírjuk a toStringet akkor amit szeretnénk. Saját magára 	vonatkoztatja a thist.
 			 -> lambda nem fogja a this-t magára vonatkoztatni, nem tekint magára egy külön objektumként, és main-en belül statikus környezetben hibát is jelez. Csak nem statikus környezetben működik a this. A külső környezetére vonatkoztatja a thist.
+	- Compiler is máshogy kezeli
 		
 

@@ -1,0 +1,4 @@
+ArrayList: dinamikus array, nem kell meghatározni, hogy hány elemű lesz. Összetett adattípust is képes tárolni.
+	- kiiratás
+	- sorbarendezés Comparable interface-el --> ezzel a módszerrel csak egyféle sorbarendezést tudunk megadni. Pl. kor szerint, de ha a kód más részén meg mondjuk név szerint kellene, akkor ez nem lesz jó.
+	- sorbarendezés .sort()-al ami egy Comparatort vár, amit az osztályban kell létrehozni. Itt bármennyit létrehozhatok. Pl név és külön kor szerint is, nincs limit benne.
