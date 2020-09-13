@@ -2,6 +2,7 @@ package arraylist;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 
 public class ArrayListApplication {
@@ -92,7 +93,11 @@ public class ArrayListApplication {
 		//4.módszer, ha jó egy sorban a beépített
 		System.out.println(words);
 		System.out.println(numbers);
-				
+		//5.módszer iterator
+		Iterator<String> it = words.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}		
 	}
 
 }
