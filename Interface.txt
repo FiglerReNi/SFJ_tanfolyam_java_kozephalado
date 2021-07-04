@@ -1,7 +1,0 @@
-Interface: 
-	- Csak beregisztrálja a functionokat, de nem mondja meg hogyan/mit csinál
-	- Aki kiterjeszti annak kötelező meghatározi a benne foglalt functionok működését
-	- Ha egy functiont több osztály is használ, akkor interface-ben határozhatjuk meg ezt.
-	- Vannak marker interfacek, amiben nincs semmilyen function amit felül kellene írni, de plusz képességet tud adni egy osztálynak. Nem fontos hogy a háttérben hogy működik, az a lényeg, hogy ami nekünk kell azt tudja. pl. serializable. (Általánosan elterjedt szabvány az adatok küldésére, az ilyen interfacel ellátott osztály szerializálható, olyan formába hozható az objektum, hogy lehessen küldeni máshová.)
-	- Példa: van két osztály (galamb, denevér) ami tud repülni, ilyenkor a repülés képességét egy interfacbe teszem, mert ha csinálok egy functiont ami fogadhat állatokat és aztán a repülést akarom használni, így tudom biztosítani, hogy csak olyan állatot lehessen átadni ami tényleg tud repülni. Vagyis az interface típusát várom, amit csak a tényleg repülni tudók terjesztenek ki, így csak azt fogja elfogadni, ha denevért/galambot adok át. Ha kutyát azt nem, mert nem terjeszti ki a repülős interface-t. Ha nem intrefacbe tennénk, hanem az osztályokba a repülést, akkor nem tudnánk így egyszerüen megoldani ezt a feladatot. 
-	- Kötelezettséget ad, hogy az osztályunk ezt vagy azt képes lesz megcsinálni.
