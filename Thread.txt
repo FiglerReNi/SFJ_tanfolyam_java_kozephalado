@@ -1,7 +1,6 @@
 
 	
-Volatile:
-	- Meggátolja egy változó cachelését. Ez szálaknál lehet fontos, ha egyik szálból akarunk hatással lenni egy másikra egy változó értékének állításával. Viszont ha az a változó cachel, ez nem fog működni. A cache oka, hogy a JVM megvizsgálja az osztályt és azt látja, hogy osztályon belül semmi nem állítja az értékét a változónak. És mivel ez egy szál nem feltételezi, hogy máshonnan állítva lesz ez az érték. Ezért cacheli. 
+
 
 Join:
 	- szálak bevárása
