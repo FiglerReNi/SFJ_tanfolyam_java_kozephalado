@@ -12,8 +12,6 @@ public class Thread6Application {
 
 	public static void main(String[] args) throws InterruptedException {
 		SpringApplication.run(Thread6Application.class, args);
-		//létrehozok egy "medencét" és megadom, hogy hány szál fér bele maximum. Ezt a számot kivehetem akár egy külső fájlból is és tudom
-		//módosítani a kód nélkül, hány szálon fusson le az app
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 		//5 alkalommal akarom elvégeztetni a feadatot
 		for (int i = 1; i <= 5; i++) {
