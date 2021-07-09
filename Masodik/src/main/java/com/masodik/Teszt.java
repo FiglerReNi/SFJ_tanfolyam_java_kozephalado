@@ -1,17 +1,5 @@
 package com.masodik;
 
-/*Példa feladat, van egy metódus, amit bővíteni akarunk egy bejövő paraméterrel, de úgy, hogy az eredetihez nem nyúlhatunk, mert egy csomó 
- *helyen használja az alkalmazásunk.
- *Ha csak simán beírok egy új paramétert akkor hiba lesz minden olyan helyen ahol csak 3 paraméterrel használjuk a kódot.
- *Rossz Megoldások: 
- *	1. Új függvényt csinálunk, átmásoljuk a kódot és megcsináljuk a szükséges módosítást --> DUPLIKÁCIÓ
- *	2. Mindenhol ahol az eredeti használatban van hozzáadom az új paramétert --> Sok munka és nem nyúlunk más kódjához, ha nem muszáj
- *Jó Megoldás:
- *	Készítünk egy új függvényt ugyanazzal a névvel, de négy paraméterrel
- *  A teljes kaluláció és kód az újban lesz csak benne (négy paraméteres)
- *  A régi függvényt átirányítom az újhoz
- *	
- *		 */
 public class Teszt {
 	//Find Usage: jobb klikk -> References -> Project
 	//overloaded functionok: ugyanaz a nevük, de különböző paramétert fogadnak
