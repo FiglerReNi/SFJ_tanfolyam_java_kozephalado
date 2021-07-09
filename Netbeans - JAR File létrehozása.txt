@@ -1,4 +1,0 @@
-Netbeans sima Java alalmazás jar file készítése:
-	- Projekten jobb egér -> Clean and Build -> lefut egy Ant parancs, a Netbaens ezt használja csomagolóként.
-	- Ezután megkeressük a létrejött dist fájl-t a projekt mappájában, amiben benne lesz a jar file
-	- Ezt konzolon egy java -jar alkalmazas.jar paranccsal tudjuk futtatni.
