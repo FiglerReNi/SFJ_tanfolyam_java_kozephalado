@@ -1,8 +1,0 @@
-
-	
-
-
-
-	
-ExecutorService: 
-	-Ha nem két feladatot szeretnék külön szálakon, és nem én akarom létrehozni a szálakat, hanem csak egy feladatot szeretnék gyorsan elvégezni, rendelhetek hozzá több szálat. A szálaknak az executor adagolja a feladatot.
