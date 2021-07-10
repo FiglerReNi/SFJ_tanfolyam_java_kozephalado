@@ -1,3 +1,0 @@
-A main függvény args paraméterével kívülről adhatunk át paramétert az alkalmazásunknak
-	- pl.konzolon keresztül
-	A paraméter függyvényében tudjuk konfigurálni, hogyan induljon a program, melyik metódust hívjuk meg
