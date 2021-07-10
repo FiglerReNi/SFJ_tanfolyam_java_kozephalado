@@ -1,7 +1,4 @@
-ArrayList: dinamikus array, nem kell meghatározni, hogy hány elemű lesz. Mindig tudunk újabb elemeket hozzá tenni. Összetett adattípust is képes tárolni. Indexelt (sorszámokkal ellátott)
-	- kiiratás
-	- sorbarendezés Comparable interface-el --> ezzel a módszerrel csak egyféle sorbarendezést tudunk megadni. Pl. kor szerint, de ha a kód más részén meg mondjuk név szerint kellene, akkor ez nem lesz jó.
-	- sorbarendezés .sort()-al ami egy Comparatort vár, amit az osztályban kell létrehozni. Itt bármennyit létrehozhatok. Pl név és külön kor szerint is, nincs limit benne.
+
 	
 LinkdList: láncolt lista, nem indexelt, hanem minden elem tartalmaz két hivatkozást az előző és a következő elemre. Így ha hozzáteszünk vagy elveszünk belőle, csak az elem hivatkozásai változnak.
 
