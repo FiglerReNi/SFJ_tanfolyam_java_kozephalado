@@ -1,28 +1,4 @@
 
-	
-LinkdList: láncolt lista, nem indexelt, hanem minden elem tartalmaz két hivatkozást az előző és a következő elemre. Így ha hozzáteszünk vagy elveszünk belőle, csak az elem hivatkozásai változnak.
-
-ArrayList VS LinkdList:
-	Mindkettő egy nagyobb keretrendszernek a része: Java Collection Framework
-	https://www.javatpoint.com/collections-in-java
-	Iterable interface
-		Collection interface
-			List interface
-				ArrayList
-				LinkdList
-				Stack
-			Queue interface
-				Priority Queue
-			Set interface
-				HashSet
-				LinkedHashSet
-	
-	Különbségek:
-		ArrayList:  gyorsabb keresés
-					lassabb hozzáadás és törlés (ha törlünk, akkor a többi elem indexét átcimkézi a java és a legutolsót törli)
-		LinkdList:	gyorsabb a hozzáadás és törlés, mert nem kell mindent újracimkézni.
-					lassabb keresés, mert végig kell menni az elemeken.
-					
 PriorityQueue: A hozzá adott elemeket, egy alap sorrendbe állítja és így kezeli. Számok elől növekvő sorrendbe aztán betük abc rend szerint.
 	- Gyors emiatt
 	- Ha meg akarjuk őrizni az eredeti sorrendet, akkor használhatun LinkdList-et, de így nem lesz annyira gyors
