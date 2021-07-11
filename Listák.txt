@@ -1,7 +1,7 @@
 
 
 	
-Stack: Last in first out megvalósítása (LIFO)
+
 
 HashSet: Olyan adathalmaz, amely nem tartalmazhat duplikációt. Kétszer ugyanaz az érték nem szerepelhet benne. 
 	- Ha egy listát teszünk bele, a duplikációk törlődnek és nem tartja meg a lista sorrendjét, alapértelmezett rendezést követ (abc) sorrend.
