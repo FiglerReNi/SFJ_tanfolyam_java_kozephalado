@@ -1,8 +1,5 @@
 
-PriorityQueue: A hozzá adott elemeket, egy alap sorrendbe állítja és így kezeli. Számok elől növekvő sorrendbe aztán betük abc rend szerint.
-	- Gyors emiatt
-	- Ha meg akarjuk őrizni az eredeti sorrendet, akkor használhatun LinkdList-et, de így nem lesz annyira gyors
-	- Comparatorral, lambdával adhatunk egyedi sorrendet
+
 	
 Stack: Last in first out megvalósítása (LIFO)
 
