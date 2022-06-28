@@ -1,0 +1,80 @@
+https://www.javatpoint.com/collections-in-java
+
+Létrehozás:
+	•  az a szokás, hogy az interfacet adjuk meg a bal oldalon.
+	•  Újrafelhasználható lesz a kód, nyitva hagyjuk a lehetőséget.
+	•  Ha ez egy osztályomban van és valaki azt kiterjeszti tud neki másfajta adattípust adni
+
+Array
+	Jellemzői:
+		○ meg kell mondanunk mekkora lesz a mérete,
+		○ statikus, ha törlök belőle az érték helye ott marad üresen, nem megy össze a tömb
+		○ tud tárolni primitivet
+		○ tud multidimenziós lenni pelda[0][1]
+
+Collectionok
+	1. List:
+		ArrayList
+			.remove() --> elem törlése
+			.get() --> adott elem értékét adja vissza
+			.indexOf() --> hányadik elem
+			.size() --> lista mérete
+			Jellemzői:
+				□ nem statikus a mérete, nem kell meghatározni, hogy hány elemű lesz. Mindig tudunk újabb elemeket hozzá tenni.
+				□ nem statikus, ha törlünk egy elemet a többi helye módosul
+				□ sorba lehet egyszerűen redezni,
+				□ sok beépített függvény
+				□ primitivet nem tud tárolni, tehát ha int-et akarunk Integer-t kell megadni
+				□ nem lehet multidimenziós
+				□ Lassabb lehet mint a sima array-el dolgozni, de feladattól függ
+				□ Összetett adattípust is képes tárolni.
+				□ Indexelt (sorszámokkal ellátott)
+					® kiiratás (for, foreach, tostring, foreach+lambda, iterator)
+					® sorbarendezés összetett adattípussal
+						◊ Comparable interface-el --> ezzel a módszerrel csak egyféle sorbarendezést tudunk megadni. Pl. kor szerint, de ha a kód más részén meg mondjuk név szerint kellene, akkor ez nem lesz jó.
+						◊ sorbarendezés .sort()-al ami egy Comparatort vár, amit az osztályban kell létrehozni. Itt bármennyit létrehozhatok. Pl név és külön kor szerint is, nincs limit benne.
+						◊ sorbarendezés.sort(és itt hozunk létre egy lambda expressiont)
+				□ Egy tömbből csinálhatunk arrayListet:
+					List<String> list1 = Arrays.asList(tömb);
+		LinkdList:
+			Láncolt lista, nem indexelt, hanem minden elem tartalmaz két hivatkozást az előző és a következő elemre. Így ha hozzáteszünk vagy elveszünk belőle, csak az elem hivatkozásai változnak.
+		ArrayList VS LinkdList:
+			Mindkettő egy nagyobb keretrendszernek a része: Java Collection Framework
+			https://www.javatpoint.com/collections-in-java
+			Iterable interface
+				Collection interface
+					List interface
+						ArrayList
+						LinkdList
+						Stack
+					Queue interface
+						Priority Queue
+					Set interface
+						HashSet
+						LinkedHashSet
+			Különbségek:
+				□ ArrayList:
+					® gyorsabb keresés
+					® lassabb hozzáadás és törlés (ha törlünk, akkor a többi elem indexét átcimkézi a java és a legutolsót törli)
+				□ LinkdList:
+					® gyorsabb a hozzáadás és törlés, mert nem kell mindent újracimkézni.
+					® lassabb keresés, mert végig kell menni az elemeken.
+		Stack:
+			Stack: Last in first out megvalósítása (LIFO)
+
+	2. Queue:
+		Priority Queue:
+			A hozzá adott elemeket, egy alap sorrendbe állítja és így kezeli. Számok elől növekvő sorrendbe aztán betük abc rend szerint.
+				□ Gyors emiatt
+				□ Ha meg akarjuk őrizni az eredeti sorrendet, akkor használhatun LinkdList-et, de így nem lesz annyira gyors
+				□ Comparatorral, lambdával adhatunk egyedi sorrendet neki
+
+	3. Set:
+		HashSet
+			Nem lehet benne kétszer ugyanazt az elemet tárolni. Olyan adathalmaz, amely nem tartalmazhat duplikációt. Kétszer ugyanaz az érték nem szerepelhet benne.
+			Ha egy listát teszünk bele, a duplikációk törlődnek és nem tartja meg a lista sorrendjét, alapértelmezett rendezést követ a sorrend. Egy arrayListet paraméterként tudunk neki átadni és így tölti át az értékeket.
+				Set<String> set = new HashSet<>(list1);
+
+		LinkedHashSet:
+			Megőrzi az átadott lista sorrendjét.
+

@@ -1,0 +1,23 @@
+MAP:
+	• interface
+	• key value párokat tudunk benne tárolni és ezekből listát
+	• könnyebb kereshetőség, egy arraylisten foreach-el tudunk végigmenni ha keresünk egy értéket, itt viszont a key-el tudunk hivatkozni rá.
+	• a key bármi lehet nem csak string adattípus
+	• a value is lehet bármi, objektum is
+	• Map.Entry minden egyes key-value pár adattípusa
+
+HashMap:
+	• a Map egyimlementációja
+	• nem tartalmazhat duplikációt
+	• nem foglalkozik az adatok sorrendjével, alap renezést hasznél (abc sorrend)
+
+LinkedHashMap:
+	• ez megtartja a sorrendet
+
+Létrehozás:
+		HashMap<String, Integer> tesztMap = new HashMap<>();
+	•  Ez is jó megoldás lenne, de az a szokás, hogy az interfacet adjuk meg a bal oldalon.
+		Map<String, Integer> tesztMap = new HashMap<>();
+	•  Újrafelhasználható lesz a kód, nyitva hagyjuk a lehetőséget.
+	•  Ha ez egy osztályomban van és valaki azt kiterjeszti tud neki másfajta map-hez tartozó adattípust adni
+

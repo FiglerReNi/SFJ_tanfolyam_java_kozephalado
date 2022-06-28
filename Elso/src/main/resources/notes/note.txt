@@ -1,0 +1,163 @@
+STS:
+  Szerkezet:
+  	• srs/main/java/package - kódunk jön ide
+  	• src/main/resources/static - ide jönnek a videók, képek, statikus fájlok, amik nem módosulnak.
+  	• src/main/resources/templates - ide jönnek a honlapok, html kódok
+  	• src/main/resources/application.properties - ide tudunk specifiációkat, paramétereket tenni, amikor elindul a .jar programunk, innen kiveszi ezeket. Ha itt nincs semmi, akkor az alapbeállításokat használjuk. pl. mekkora legyen a heap mérete, milyen porton fusson az alkalmazás.
+  	• JRE System Library
+  	• Maven dependencies - a függőségeknek is lehet saját pom.xml fájluk, amivel újabb dolgoat hív meg. Így nagyon sok minden láncba van kötve.
+  	• pom.xml
+  Gyorsbillentyűk:
+  	Shift+Alt+F - formázás
+  Command Line:
+  	• Command line használata IDE-n belül: Jobb egérgom a projekten -> run as -> run configurations:
+  	• Spring Boot fülön látja a profilunkat, lehet állítani.
+  	• Arguments fülön program argumentumént is átadhatjuk: --spring.profiles.active=prod
+
+Objektumorientált:
+	class -> osztály (tervrajz)
+	objektum -> az osztályból készült példány, bármennyi lehet belőle
+	A javaban a fő osztály az Object, ez a legfelsőbb szint. Bármit létrehozok ezt megörökli. Ezért tudunk pl .length-et használni. És még sok más előre definiált függvényt.
+
+Methódus vs Függvény:
+Javaban előre meg kell határozni lesz-e visszatérési érték és ha igen mi lesz a típusa
+
+Polimorfizmus:
+  Többalakúság:
+  	Amikor osztályokat írunk lesznek olyan dolgok amik közösek több osztályban. Ezeket nem írjuk le többször, hanem csinálunk nekik egy külön osztályt. És ezt megörökli a többi osztály. A java pedig képes ezt felismerni és a szülőnél is keresni a metódusokat, függvényeket.
+  	Amikor objektum hierarchiákkal fogalkozunk, akkor gyakorta találkozunk azzal a jelenséggel, hogy ahelyett, hogy a speciális típusként hivatkoznánk egy-egy objektumra, inkább annak ős típusát használjuk, így adott ponton elképzelhető, hogy a különböző specializációkból más-mást használunk. Ez a megközelítés a többalakúság, polimorfizmus, amely biztosítja az objektumok felcserélhetőségét.
+  	https://okt.sed.hu/prog1/gyakorlat/eloadas/Java/polymorphism/
+  Példa:
+  	Állatok esetében mindegyiknek lesz neve és súlya, ezért ezeket nem az egyes fajták (pl. macska) saját osztályában definiáljuk, mert mindegyik állatnál kelleni fog. Hanem csinálunk egy állat osztályt és ezt örökli pl a macska osztálya.
+
+Osztályok típusai:
+  Abstract:
+  	Ezt az osztályt önmagában nem lehet példányosítani, ha az abstract osztálynak van egy abstract metódusa, akkor azt kötelező override-olni.
+  Interface:
+  	• Az interfacen belül nem lehet body-ja a method-nak.
+  	• Amikor implementáljuk, az összes metódusát kötelező overridolni.
+  	• Egy osztály bármennyi interface-t implementálhat.
+  	• Csak beregisztrálja a functionokat, de nem mondja meg hogyan/mit csinál
+  	• Aki kiterjeszti annak kötelező meghatározi a benne foglalt functionok működését
+  	• Ha egy functiont több osztály is használ, akkor interface-ben határozhatjuk meg ezt.
+  	• Kötelezettséget ad, hogy az osztályunk ezt vagy azt képes lesz megcsinálni.
+  	• Sok cég ragaszkodik hozzá, hogy interface-t használjunk. A Servive réteget ne csak önmagában hozzuk létre, hanem legyen hozzá interface és ezt használjuk a service rétegben.
+  	• Az interfaceket és a serviceket gyakran külön package-be teszik
+  	• Ha van változója, az automatikusan public static final, így ki sem kell írni
+  	• Java 8 felett az interfacekben lehet bodyja a metódusoknak, ilyenkor a default szóval kell kezdeni a metódust
+  	Példa1:
+  		Van két osztály (galamb, denevér) ami tud repülni, ilyenkor a repülés képességét egy interfacbe teszem, mert ha csinálok egy functiont ami fogadhat állatokat és aztán a repülést akarom használni, így tudom biztosítani, hogy csak olyan állatot lehessen átadni ami tényleg tud repülni. Vagyis az interface típusát várom, amit csak a tényleg repülni tudók terjesztenek ki, így csak azt fogja elfogadni, ha denevért/galambot adok át. Ha kutyát azt nem, mert nem terjeszti ki a repülős interface-t. Ha nem intrefacbe tennénk, hanem az osztályokba a repülést, akkor nem tudnánk így egyszerüen megoldani ezt a feladatot.
+  	Példa2:
+  		Interface nélkül:
+  			@Servive annotációval látom el az osztály és megírom benne a functionokat, hogy mi mit csináljon. Aki meghívja, annak tudnia kell mit csinál az a function.
+  		Interfacel:
+  			Nagyobb projekteknél lehet fontos, itt egy interfacben megmondjuk, hogy pl aki kiterjeszti kell csináljon egy save functiont, de más-más osztályokban másképp fog működni ez a save function. Például beregisztrál egy felhasználó, és egyszer arra van szükségünk, hogy adatbázisba mentsük, egyszer arra hogy mondjuk xml-be, vagy más fajta adatbázisba mentjük. Logikailag ez ugyanaz, adatfeldolgozás mindegyik változat. Ha nem használunk interfacet a service classban írunk 3-4 functiont, majd a controllerben meghívjuk épp amelyik kell. Ha módosul, hogy melyikre van szüség, mindenhol ki kell cserélni a kódban.
+  			Erre csinálhatunk egy interfacet, ami annyit mond hogy save(); majd a 3-4 módra csinálunk service classokat külön-külön, amik kitejesztik az interface-t. Majd a controllerben az interface.save-et hívjuk meg mindig, és csak az injektálásnál jelezzük, hogy melyik ezt kiterjesztő osztály kell nekünk (így kevesebb helyen kell átírni):
+  				@Autowired
+  				@Qualifier("pl.:3.módszer -- vagyis melyik osztály kell") ---> ez abban az esetben elhagyható ha csak egy osztály terjeszti ki az interface-t
+  				Intefaceünk neve
+  			Átláthatóbbá teszi a kódot, és ha módosítunk az interfacben kötelezően kell az osztályokban is.
+  		Példánkban:
+  			A változat interface nélkül
+  				UserRepository
+  				UserServiceImpl --> ebben használjuk a findByEmail-t a repositoryból és csinálunk egy functiont findByEmail néven
+  			B változat interfaccel
+  				UserRepository
+  				UserService (interface) --> ebben regisztráljuk a létrehozni kívánt findByEmail functiont
+  				UserServiceImpl --> kiterjeszti az interface-t így kötelező bele a findByEmail function, amiben használjuk a repoból a findByEmail-t
+  	Marker interface:
+  		Amiben nincs semmilyen function amit felül kellene írni, de plusz képességet tud adni egy osztálynak. Nem fontos hogy a háttérben hogy működik, az a lényeg, hogy ami nekünk kell azt tudja. pl. serializable, CrudRepository. (Általánosan elterjedt szabvány az adatok küldésére, az ilyen interfacel ellátott osztály szerializálható, olyan formába hozható az objektum, hogy lehessen küldeni máshová.)
+  Final:
+  	Ez nem terjeszthető ki, nem lehet alosztálya, nem lehet szülője semmilyen osztálynak. De maga kiterjeszthet más osztályt.
+  Immutable:
+  	• osztály final,
+  	• változó final,
+  	• két constructor,
+  	• nincs setter
+
+Elérhetőség:
+  Változókra és függvényekre/metódusokra is alkalmazható beállítás
+  	• public: bárhol elérhető, ha nem írunk oda semmit automatikusan az methodnál és propertynél is
+  	• protected: csak adott packagen belül érhető el, az alosztályok számára és az adott osztály számára, és csak azonos packageban tudjuk meghívni
+  	• private: nem elérhető máshol csak az adott osztályban, getterek és setterek segítségével állítható az elérhetőség és a módosítás lehetősége
+  Osztályok elérhetősége:
+  	• Van két packagem és mindkettőben egy – egy osztály.
+  	• Az egyik osztályban szeretném használni a másik valamilyen függvényét.
+  	• Ilyenkor be kell importálnom felülre package name + class name -el
+
+Öröklődés:
+  	• Többszörös öröklődés nincs a javaban, egyetlen szülője lehet egy osztálynak.
+  	• Olyan lehet, hogy a kiterjesztett osztálynak is van egy szülője, ilyenor azt is megörökli
+  	• Ha egy adott osztálynak több osztályra lenne szüksége, nem csak egyre amit iterjeszthet, akkor interface implementálásával lehet megoldani
+    • Ha egy metódus a szülőben és az alosztályban is benne van, akkor az alosztályból fogja venni a program, tehát felül tudjuk írni a szülőben lévő dolgokat.
+
+Konstruktor:
+  	• Nem kötelező explicit módon létrehozni, ha nem hozzuk létre,  létrehoz magának egyet.
+  	• Automatikusan lefut a példányosításkor.
+  	• Több constructort is létre lehet hozni, viszont ha létrehozok olyat amiben várok értéket kívülről, akkor az első érték nélküli üres alapot is kötelező létrehozni.
+  		○ Overloading -> túltöltés (ugyanaz a függvény, de más paraméterekkel is meghívható, több változata van)
+    super()
+  	  A szülő konstruktorát tudja meghívni, alapból, amikor meghívok egy osztályt az összes ősének a  constructorát is meghívom vele és lefutnak automatikusan, de explicit módon meg tudom hívni, pl ha valamelyik paraméteres construktorát akarom meghívni, de ilyenkor a legelső parancsnak a super()-nek kell lennie.
+
+Osztályok jellemzői:
+  super:
+  	A szülő osztályra mutat, ha pl itt vmit az adott osztályban felülírtam, ezzel elérem az eredeti változatot egy függvényből/metódusból pl.
+  overloading (túltöltés):
+  	Ha ugyanolyan nevű függvényt csinálok, vagy construktort, de más bejövő paramétereket várok: pl az elsőnél semmit, aztán egy stringet, aztán egy string-int párost, de két ugyanolyan szerkezetű nem lehet, de pl ha felcserélem akkor már jó (int-string)
+  final:
+  	Lehet változó és metódus is.
+  		○ Változó: amint értéket kap, utána már nem lehet megváltoztatni. A final változót nagy kezdőbetűvel írjuk.
+  		○ Metódus: a final methodot nem lehet felülírni, ennek akkor van lényege, ha maga az osztály nem final, tehát kiterjeszthető, de a methodot nem akarjuk felülírhatóvá tenni
+  this:
+  	mindig az adott objektumra mutat
+  static:
+  	• Egy osztály methodját meg lehet hívni példányosítás nékül is pl Math.random-ot így használjuk
+  	• Ha egy osztálynak van static methodja az példányosítás nélkül meghívható, ezt akkor lehet ha az a method mindig ugyanazt csinálja
+  	• Ha van egy static változó egy osztályban, kiterjesztjük ezt az osztályt és az alosztályt példányosítjuk többször, akkor ugyanazon a static változón fognak osztozni az objektumok. Megszámolhatjuk például, hogy hány objektum készült az osztályból.
+  getter, setter
+  Osztály változó és helyi változó
+  	• A helyi változónak kötelezően kell értéket adni ha használni akarom. Például ha ki akarom íratni. Nem fogja engedni amíg nincs értéke.
+  	• Az osztályváltozót ki tudom íratni úgy is egy metódsuban, ha nem lett érték adva neki. Ilyenkor null lesz
+  extends
+  Has it/Is it
+  	• Egy osztály tartalmazhat egy objektumot is változóként, amit használni akarunk. Ilyenkor A tartalmazza B-t, A rendelkezik B-vel. Ez a has it.
+  	• Ha egy osztáky kiterjeszt egy másikat, akkor A alosztálya B-nek. Ez az is it.
+  Import
+  	• Az osztályokat amiket használunk, be kell importálni. Előfordulhat, hogy két ugyanolyan nevű osztályt szeretnénk használni, amik eltérő package-kben élnek. Ilyenkor kódban a használatkor a teljes útvonalat kell megadni.
+  	javafx.scene.paint.Color color = new javafx.scene.paint.Color();
+
+Annotációk:
+  	• A @-al keződő kulcsokat annotációnak nevezzük.
+  	• A Java programozási nyelvben annotációnak olyan nyelvi elemet nevezünk, amely lehetővé teszi a metaadatok beépítését forráskódba.
+  	• Az anotációkat a Java 5.0-s verziójánál vezették be.
+  	• Az annotációk a programkód elemeihez rendelhetők (csomagokhoz, típusokhoz, metódusokhoz, attribútumokhoz, konstruktorokhoz, lokális változókhoz), plusz információt hordoznak a Java fordító ill. speciális eszközök számára.
+  	• Az annotáció @ jellel kezdődik, majd ehhez kapcsolódik a neve.
+  @Override:
+  	Ezzel jelzem magamnak is hogy ez egy olyan dolog, ami az ősben is van de felül írtam.
+
+Inner, Outer, Anonym:
+  Egy osztályon belül létrehozhatunk egy másik osztályt.
+  	• A külső lesz az outer class, a belső pedig az inner class.
+  	• Ha a külső osztálynak van private változója azt az inner class eléri
+  	• Ha az inner class private, akkor az outeren kívül más nem éri el. Ilyenkor csinálhatunk az outerben egy publicus metódust ami példányosítja az innert és így el tudjuk érni kívülről
+  Egy osztály egyik függvénye/metódusa várhat paraméterként interfacet. Ilyenkor a meghívás helyén kell azt kezelnünk, hogy nem lesz implementálva az interface, hanem példányosítani kell, viszont ha példányosítjuk akkor az interface metódusait kötelezően felül kell írni. Ezt mind megcsinálhatjuk annak a függvénynek a meghívásakor amelyik várja az interface-t paraméternek. Anonym osztályt hozunk létre, mert nem lesz neve az osztálynak (ami annyit csinál hogy példányosít egy interfacet és felülírja  a metódusát).
+  Két szerkezete van:
+  	objMy.displayMessage(new Message(){
+  	           @Override
+  	           public String great(){
+  	               return "Hello";
+  	           };
+  	        });
+  	objMy.displayMessage(() -> "Hello")
+
+Garbage Collector:
+  	• Időről időre a heapben megkeresi a nem használt objektumokat és kiüríti.
+  	    PL.:
+  	    Ha létrehozok két objektumot és az elsőt egyenlővé teszem a másodikkal, akkor innentől kezdve mind a kettő a másodikra fog mutatni. Ez azt is jelenti hogy az elsőre már semmi nem fog mutatni, nem lesz elérhető. Tovább nem tudjuk használni. Ezeket is összegyűjti
+  	    Másik példa, ha kinullázok egy objektumot, akkor az sem lesz már többet elérhető, ezeket is eltűnteti
+  	• Ezért egy nem publikus algoritmika felelős, így nem tudjuk pontosan mikor törénik ez
+
+
+
+
+
