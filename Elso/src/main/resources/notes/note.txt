@@ -157,6 +157,35 @@ Garbage Collector:
   	    Másik példa, ha kinullázok egy objektumot, akkor az sem lesz már többet elérhető, ezeket is eltűnteti
   	• Ezért egy nem publikus algoritmika felelős, így nem tudjuk pontosan mikor törénik ez
 
+Adat írása, olvasása:
+  Adatáramlás:
+  	Kifelé: A program által az adat megjelenhet console-on, kiírhatjuk log file-ba, megjelenithetjük a usernek egy felületen, menthetjük file-ba, elküldhetjük egy másik szerverre, küldhetünk róla e-mailt. (System.out.print())
+  	Befelé: A felhasználótól fogadunk például adatot. (System.in.read())
+  	Error: Hibaüzenetek (System.err.print())
+   Standard (alapértelmezett) csatornák.
+  	A mi esetünkben az IDE consolja a System. paranccsal.
+  	STDIN: standard kimenő csatorna
+  	STDOUT: standard bejövő csatorna
+  Fileba írás és kiolvasás:
+  	Az adatfolyamokat mindig le kell zárni a close() függvénnyel
+  		a. változat
+  			▪ FileOutputStream: ha még nem létezik a file amibe írunk, akkor létrehozza, ha már létezik, akkor felül fogja írni
+  			▪ FileInputStream
+  		b. változat:
+  			FileWriter fw = new FileWriter("src/main/resources/move.log",true);
+  			BufferedWriter out = new BufferedWriter(fw);
+  			out.write("Queen is missing" + new Date() + "\n");
+  Buffer:
+  	• Stream esetén egyesével tudjuk az adatokat írni/olvasni, ami nagyon lassú lesz.
+  	• A bufferek meggyorsítják a folyamatot, adnak egy bizonyos területet, és ahelyett hogy apró részletekben áthaladna az adat, van egy kis tartály ahol összegyűlik. Így gyorsul a folyamat.
+  	• Eszközei:
+  		○ BufferedOutputStream
+  		○ BufferedInputStream
+  Fájl útvonala:
+  	File file = new File("yourfileName");
+  	String path = file.getAbsolutePath();
+
+
 
 
 
